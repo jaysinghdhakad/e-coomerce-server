@@ -1,0 +1,46 @@
+const express = require("express");
+
+const mongoose = require("mongoose")
+const Router = express.Router();
+
+const Product = new mongoose.Schema({
+    brand : String,
+    name: String ,
+    price: Number ,
+    rating : Number,
+    discription : String ,
+    features: String,
+    images : { 
+         image1: String,
+         image2 : String,
+         image3: String  
+           },
+    catigory_id : String,
+    out_of_stalk: Boolean,
+    discount: Number
+})
+const productDb = mongoose.model("Product", Product);
+
+Router.route("/")
+.get(async (req,res)=>{
+  try{
+    const {id} = req
+    const Products = await productDb.find({catigory_id: id})
+    res.status(500).json({i_am : "product have changed", products : Products})
+  }catch(err){
+      res.status(400).json({success:false ,  error : err.message})
+  }
+})
+.post(async(req,res)=>{
+    try{
+       const product = req.body;
+      
+       let newProduct = new productDb(product);
+       newProduct = await newProduct.save();
+       res.status(500).json({success: true , newProduct})
+    }catch(err){
+        res.status(400).json({success: false, error: err.message})
+    }
+})
+
+module.exports = Router;
