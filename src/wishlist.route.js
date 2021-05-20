@@ -14,7 +14,7 @@ const WishListSchema = new mongoose.Schema({
     
     discription : String ,
     features: String,
-    image: String,
+    image: String
     
 })
 

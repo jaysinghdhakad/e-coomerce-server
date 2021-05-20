@@ -37,4 +37,4 @@ app.use("/cart",cart)
   
 }
 app.use(errorhandler)
-app.listen(3000)
+app.listen(process.env.PORT || 3000)

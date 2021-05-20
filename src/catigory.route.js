@@ -7,7 +7,7 @@ const Router = express.Router();
 const CatigorySchema = new mongoose.Schema({
     name : String,
     image : String,
-    catigory_id :  String,
+    catigory_id :  String
 
 })
 
