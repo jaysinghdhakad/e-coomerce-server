@@ -26,7 +26,7 @@ Router.route("/")
   try{
     const {id} = req
     const Products = await productDb.find({catigory_id: id})
-    res.status(500).json({i_am : "product have changed", products : Products})
+    res.status(200).json({success: true, products : Products})
   }catch(err){
       res.status(400).json({success:false ,  error : err.message})
   }
