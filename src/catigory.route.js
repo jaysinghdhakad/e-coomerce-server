@@ -18,9 +18,9 @@ Router.route("/")
 .get(async(req,res)=>{
 try{ 
         const response = await catigoryDb.find({})
-     res.status(500).json({success: true ,response })
+     res.status(200).json({success: true ,response })
 }catch(err){
-    res.status(400).json({success: false, message : "following error occured", error:err.message})
+    res.status(500).json({success: false, message : "following error occured", error:err.message})
 }
   })
 .post(async(req,res)=>{
@@ -29,9 +29,9 @@ try{
         console.log(product)
         const newProduct = new catigoryDb(product);
         const updatedproduct = await newProduct.save()
-        res.status(500).json({success: true , updatedproduct})
+        res.status(200).json({success: true , updatedproduct})
     }catch(err){
-        res.status(400).json({success: false , error : err.message})
+        res.status(500).json({success: false , error : err.message})
     }
 })
 

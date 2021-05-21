@@ -25,9 +25,9 @@ Router.route("/")
 .get(async(req,res)=>{
     try{
         const products = await wishListDb.find({});
-        res.status(500).json({success:true, products})
+        res.status(200).json({success:true, products})
     }catch(err){
-        res.status(400).json({success:false, error : err.message})
+        res.status(500).json({success:false, error : err.message})
     }
 })
 .post(async(req,res)=>{
@@ -36,9 +36,9 @@ Router.route("/")
     try{
         let updatedProduct = new wishListDb(product);
         updatedProduct = await  updatedProduct.save();
-        res.status(500).json({success: true, updatedProduct})
+        res.status(200).json({success: true, updatedProduct})
     }catch(err){
-        res.status(400).json({success : false , error:err.message})
+        res.status(500).json({success : false , error:err.message})
     }
 })
 
@@ -48,9 +48,9 @@ Router.route("/:id")
     try{
         let product = await wishListDb.findById(id);
         const response = await product.delete();
-        res.status(500).json({success:true, response})
+        res.status(200).json({success:true, response})
     }catch(err){
-        res.status(400).json({success:fase, error: err.message})
+        res.status(500).json({success:fase, error: err.message})
     }
 })
 

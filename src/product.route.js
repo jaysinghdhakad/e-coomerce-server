@@ -37,9 +37,9 @@ Router.route("/")
       
        let newProduct = new productDb(product);
        newProduct = await newProduct.save();
-       res.status(500).json({success: true , newProduct})
+       res.status(200).json({success: true , newProduct})
     }catch(err){
-        res.status(400).json({success: false, error: err.message})
+        res.status(500).json({success: false, error: err.message})
     }
 })
 
