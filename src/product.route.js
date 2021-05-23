@@ -43,4 +43,16 @@ Router.route("/")
     }
 })
 
+Router.route("/:id")
+.get(async (req,res)=>{
+  const {id} = req.params;
+ try{
+  const Product = await productDb.find({_id: id});
+  res.status(200).json({success: true, Product : Product})
+ }catch(err){
+   res.status(500).json({success : false, error : err.message})
+ }
+
+})
+
 module.exports = Router;
